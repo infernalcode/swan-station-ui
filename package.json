@@ -1,0 +1,14 @@
+{
+  "name": "swan-station",
+  "version": "1.0.0",
+  "description": "A terminal for maintaining the Valenzetti Equation",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve"
+  },
+  "keywords": [],
+  "author": "Ryan Creasey",
+  "devDependencies": {
+    "serve": "^11.2.0"
+  }
+}
