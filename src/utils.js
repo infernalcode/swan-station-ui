@@ -89,9 +89,19 @@ function writePrompt() {
     <span class='prompt-path'>~${position.length ? "/" : ""}${position.join("/")}</span>
     <span class='prompt-cursor'>${promptSymbol}</span>
   </p>
-  <input id='prompt-input' type='text' />
+  <span id="caret"></span>
+  <input id='prompt-input' oninput='hideCaret()' type='text' />
   `;
   terminal.appendChild(prompt);
+}
+
+function hideCaret() {
+  const prompt = document.getElementById("prompt-input");
+  let caret = document.getElementById("caret");
+  if (caret) {
+    caret.remove();
+    prompt.setAttribute("style", "margin-left: 0;");
+  }
 }
 
 function replacePrompt() {

@@ -46,9 +46,17 @@ body {
   text-transform: uppercase;
 }
 
+#crt {
+  display: flex;
+  flex-flow: column;
+  height: 100vh;
+}
+
 #terminal {
   background-color: var(--bg);
   padding: 1em 0em;
+  flex: 1;
+  overflow: auto;
 }
 
 #terminal:before {
@@ -99,11 +107,13 @@ body {
   animation: textShadow 4s infinite;
   background-color: transparent;
   border: none;
+  caret-color: transparent;
   color: var(--fg);
   flex-grow: 1;
   font-family: var(--fontFamily);
   font-size: var(--fontSize);
-  padding: 0.45em 0.5em 0.5em 0.25em;
+  padding: 0 0.25em;
+  margin-left: -1.8rem;
   text-transform: uppercase;
 }
 
@@ -134,12 +144,17 @@ span.prompt-cursor {
   margin-left: 0;
 }
 
-#caret::before {
+#caret {
   content: "■";
   animation: cursor 1s infinite;
   animation-timing-function: step-end;
-  margin-left: 1px;
-  line-height: 1rem;
+  background-color: var(--fg);
+  padding: 0;
+  font-weight: 400;
+  box-shadow: 0 0 10px var(--fg);
+  width: .75rem;
+  vertical-align: middle;
+  margin: 0.5em;
 }
 
 /**
