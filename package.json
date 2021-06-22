@@ -9,6 +9,6 @@
   "keywords": [],
   "author": "Ryan Creasey",
   "devDependencies": {
-    "serve": "^11.2.0"
+    "serve": "^12.0.0"
   }
 }

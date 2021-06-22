@@ -47,6 +47,7 @@ body {
 }
 
 p, pre {
+  text-shadow: 0 0 10px var(--fg);
   font-family: var(--fontFamily);
   font-size: var(--fontSize);
   text-transform: uppercase;
@@ -170,6 +171,7 @@ span.prompt-cursor {
 .terminal-output {
   margin: 0.5em 0em;
   text-transform: none;
+  text-shadow: 0 0 10px var(--fg);
 }
 
 /**
