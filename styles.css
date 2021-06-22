@@ -46,6 +46,12 @@ body {
   text-transform: uppercase;
 }
 
+p, pre {
+  font-family: var(--fontFamily);
+  font-size: var(--fontSize);
+  text-transform: uppercase;
+}
+
 #crt {
   background-color: var(--bg);
   display: flex;
