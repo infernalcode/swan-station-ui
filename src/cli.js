@@ -2,13 +2,14 @@
 const COMMANDS = {
   clear: { func: clear, help: "usage: clear" },
   help: { func: joinWriter(help, listWriter), help: "usage: help [<command>]" },
-  failure: { func: joinWriter(failure, textWriter), help: "usage: Enter the coefficients of the Valenzetti Equation" }
+  failure: { func: joinWriter(failure, typerWriter), help: "usage: Enter the coefficients of the Valenzetti Equation" },
+  logo: { func: joinWriter(logo, textWriter, "text-align: center"), help: "usage: logo"},
 };
 
 // Global data
 let coefficients = "4 8 15 16 23 42";
-let promptSymbol = ">:"; 
-let caretSymbol = "■"; 
+let promptSymbol = ">:";
+let caretSymbol = "■";
 let position = [];
 let commandHistory = [];
 let commandHistoryCursor = -1;
@@ -20,6 +21,9 @@ let commandHistoryCursor = -1;
 
   // Setup event listener for commands
   document.addEventListener("keydown", handleKeyPresses);
+
+  // run startup sequence
+  startup();
 
   // set prompt focus
   focusPrompt();
@@ -67,6 +71,9 @@ function runCommand(cmd) {
   const parsedCmd = parseCommand(cmd);
   let response;
 
+  // hide the caret
+  hideCaret();
+
   // Just check for the reset code
   if (cmd == coefficients) {
     response = COMMANDS.clear.func();
@@ -85,4 +92,9 @@ function runCommand(cmd) {
     replacePrompt();
   }
   focusPrompt();
+}
+
+// Startup Command
+function startup() {
+  // todo: add bootloader sequence or something
 }

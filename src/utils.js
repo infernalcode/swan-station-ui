@@ -11,9 +11,9 @@ function locationType(val) {
   return types.DIR;
 }
 
-function joinWriter(command, writer) {
+function joinWriter(command, writer, writerParams="") {
   return (input) => {
-    writer(command(input));
+    writer(command(input), writerParams);
   };
 }
 

@@ -17,7 +17,24 @@ function listWriter(output) {
   }
 }
 
-function textWriter(output = "") {
+function textWriter(output = "", style="") {
+  const terminal = document.getElementById("terminal-content");
+  const outputNode = document.createElement("div");
+  outputNode.classList.add("terminal-output");
+
+  if (style != "") {
+    outputNode.setAttribute("style", style);
+  }
+
+  const textNode = document.createElement("pre");
+  textNode.innerText = output;
+  outputNode.appendChild(textNode);
+  terminal.appendChild(outputNode);
+
+  return output;
+}
+
+function typerWriter(output = "") {
   const terminal = document.getElementById("terminal-content");
   const outputNode = document.createElement("div");
   outputNode.classList.add("terminal-output");
