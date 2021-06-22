@@ -47,13 +47,13 @@ body {
 }
 
 #crt {
+  background-color: var(--bg);
   display: flex;
   flex-flow: column;
   height: 100vh;
 }
 
 #terminal {
-  background-color: var(--bg);
   padding: 1em 0em;
   flex: 1;
   overflow: auto;
