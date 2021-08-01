@@ -1,9 +1,6 @@
 // Defined Commands
 const COMMANDS = {
-  clear: { func: clear, help: "usage: clear" },
-  help: { func: joinWriter(help, listWriter), help: "usage: help [<command>]" },
-  failure: { func: joinWriter(failure, typerWriter), help: "usage: Enter the coefficients of the Valenzetti Equation" },
-  logo: { func: joinWriter(logo, textWriter, "text-align: center"), help: "usage: logo"},
+  clear: { func: clear, help: "usage: clear" }
 };
 
 // Global data
@@ -67,31 +64,36 @@ function handleKeyPresses(e) {
 
 // User Commands
 function runCommand(cmd) {
-  commandHistory.push(cmd);
   const parsedCmd = parseCommand(cmd);
   let response;
+  commandHistory.push(cmd);
 
   // hide the caret
   hideCaret();
 
-  // Just check for the reset code
-  if (cmd == coefficients) {
-    response = COMMANDS.clear.func();
-  } else if (COMMANDS[parsedCmd[0]]) {
-    if (parsedCmd.length > 1 && parsedCmd[1] === "-h") {
-      response = COMMANDS.help.func([parsedCmd[0]]);
-    } else {
-      response = COMMANDS[parsedCmd[0]].func(
-        parsedCmd.slice(1, parsedCmd.length)
-      );
-    }
-  } else {
-    textWriter("Command not found");
-  }
-  if (!response) {
+  // check for local commands
+  if (COMMANDS[parsedCmd[0]]) {
+    response = COMMANDS[parsedCmd[0]].func(
+      parsedCmd.slice(1, parsedCmd.length)
+    );
     replacePrompt();
+    focusPrompt();
+  } else {
+    // check for remote commands
+    fetch("/command", {
+      method: "POST",
+      body: "{\"command\": \"" + cmd.toUpperCase() + "\"}",
+
+    }).then(
+      response => response.text()
+    ).then(
+      html => {
+        typerWriter(html.replace(/(?:\r\n|\r|\n)/g, '<br>'));
+        replacePrompt();
+        focusPrompt();
+      }
+    );
   }
-  focusPrompt();
 }
 
 // Startup Command
