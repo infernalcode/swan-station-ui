@@ -34,7 +34,7 @@ function textWriter(output = "", style="") {
   return output;
 }
 
-function typerWriter(output = "") {
+function typerWriter(output = "", callback) {
   const terminal = document.getElementById("terminal-content");
   const outputNode = document.createElement("div");
   outputNode.classList.add("terminal-output");
@@ -48,6 +48,7 @@ function typerWriter(output = "") {
     cursor: caretSymbol,
     delay: 50,
     autoStart: true,
+    callFunction: callback()
   });
 }
 

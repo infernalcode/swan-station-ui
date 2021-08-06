@@ -88,9 +88,16 @@ function runCommand(cmd) {
       response => response.text()
     ).then(
       html => {
-        typerWriter(html.replace(/(?:\r\n|\r|\n)/g, '<br>'));
-        replacePrompt();
-        focusPrompt();
+        let result = html.replace(/(?:\r\n|\r|\n)/g, '<br>');
+        if (result == "CLEAR") {
+          clear();
+        } else {
+          typerWriter(result, function () {
+            clearTypewriterCursors();
+            replacePrompt();
+            focusPrompt();
+          });
+        }
       }
     );
   }

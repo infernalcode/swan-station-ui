@@ -42,6 +42,15 @@ function pushCommand(cmd) {
   focusPrompt();
 }
 
+
+function clearTypewriterCursors() {
+  const cursors = document.getElementsByClassName("Typewriter__cursor");
+  for (let cursor of cursors) {
+    cursor.remove();
+  }
+  return true;
+}
+
 // Returns link url if link or cursor if directory
 // Throw error if bad path
 function locatePath(path) {
