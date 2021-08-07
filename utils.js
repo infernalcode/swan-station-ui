@@ -42,7 +42,6 @@ function pushCommand(cmd) {
   focusPrompt();
 }
 
-
 function clearTypewriterCursors() {
   const cursors = document.getElementsByClassName("Typewriter__cursor");
   for (let cursor of cursors) {
