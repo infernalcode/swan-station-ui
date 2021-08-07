@@ -1,7 +1,7 @@
 function clear() {
-  const terminal = document.getElementById("terminal-content");
-  while (terminal.firstChild) {
-    terminal.removeChild(terminal.lastChild);
+  const prompts = document.getElementById("terminal-content").childNodes;
+  for (let prompt of prompts) {
+    prompt.remove();
   }
   writePrompt();
   return true;
